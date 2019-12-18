@@ -1,8 +1,8 @@
-# To-Do List
-The Odin Project, Javascript Course: Build a to-do list
+# To-Do List - React version
+The Odin Project, Javascript Course: Build a to-do list - React version
 
 ## Live preview
-https://raw.githack.com/madcido/js-todo/master/index.html
+https://raw.githack.com/madcido/react-todo/master/index.html
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine.
@@ -10,20 +10,20 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisities
 ```
 $ node -v
-  v10.15.3
+  v12.13.1
 
 $ npm -v
-  6.4.1
+  6.12.1
 
 $ webpack -v
-  4.34.0
+  4.41.3
 ```
 
 ### Installing
 Clone the project:
 ```
-$ git clone https://github.com/madcido/js-todo.git
-$ cd ./js-todo
+$ git clone https://github.com/madcido/react-todo.git
+$ cd ./react-todo
 ```
 Install dependencies:
 ```
@@ -35,5 +35,4 @@ $ webpack
 ```
 
 ## Authors
-* **<a href="https://github.com/btuerker">Burhan Tuerker</a>**
 * **<a href="https://github.com/madcido">Fabio Carmo</a>**
