@@ -9,25 +9,30 @@ function App() {
 
     function createProject(newProject) {
         saveProject(newProject);
-        setProjects(retrieveProjects());
+        setProjects([newProject, ...projects]);
     }
 
     function updateProject(project) {
         saveProject(project);
-        setProjects(retrieveProjects());
     }
 
-    function destroyProject(projectId) {
-        deleteProject(projectId);
-        setProjects(retrieveProjects());
+    function destroyProject(id) {
+        deleteProject(id);
+        let i = projects.findIndex(p => p.id === id);
+        let projectsCopy = [...projects];
+        projectsCopy.splice(i, 1);
+        setProjects(projectsCopy);
     }
 
     return (
         <React.Fragment>
             <NewProjectButton click={createProject} />
-            <ProjectSlider projects={projects} actions={{ update: updateProject, destroy: destroyProject }} />
+            <ProjectSlider
+                projects={projects}
+                actions={{ update: updateProject, destroy: destroyProject }}
+            />
         </React.Fragment>
     )
 }
 
-ReactDOM.render(<App />, document.querySelector(".container"));
+ReactDOM.render(<App />, document.querySelector('.container'));

@@ -1,7 +1,7 @@
 import React from 'react';
 import Project from './Project';
 
-export default function ProjectSlider(props) {
+export default function ProjectSlider({ projects, actions }) {
     return (
         <React.Fragment>
             <PrevButton />
@@ -13,8 +13,12 @@ export default function ProjectSlider(props) {
                 onMouseUp={() => unholdSlider()}
                 onMouseMove={e => dragSlider(e)}
             >
-                {props.projects.map((project, index) => (
-                    <Project key={index} {...project} {...props.actions} />
+                {projects.map(project => (
+                    <Project {...project}
+                        key={project.id}
+                        update={actions.update}
+                        destroy={() => actions.destroy(project.id)}
+                    />
                 ))}
             </div>
         </React.Fragment>
@@ -34,7 +38,7 @@ function NextButton() {
 }
 
 function plusSlider(n) {
-    const projectsDiv = document.querySelector(".projects");
+    const projectsDiv = document.querySelector('.projects');
     let target;
     let remainder = projectsDiv.scrollLeft%342
     if (remainder == 0) {
@@ -73,7 +77,7 @@ let startX;
 let scrollLeft;
 
 function holdSlider(e) {
-    const projectsDiv = document.querySelector(".projects");
+    const projectsDiv = document.querySelector('.projects');
     isDown = true;
     startX = e.pageX - projectsDiv.offsetLeft;
     scrollLeft = projectsDiv.scrollLeft;
@@ -84,7 +88,7 @@ function unholdSlider() {
 }
 
 function dragSlider(e) {
-    const projectsDiv = document.querySelector(".projects");
+    const projectsDiv = document.querySelector('.projects');
     if(!isDown) return;
     e.preventDefault();
     const x = e.pageX - projectsDiv.offsetLeft;

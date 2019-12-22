@@ -1,37 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Todo from './Todo';
+import CustomScroll from './CustomScroll';
 import NewTodoButton from './NewTodoButton';
 import RemoveButton from './RemoveButton';
 
-export default function Project({ id, title, todos, ...props }) {
+export default function Project({ id, ...props }) {
+    const [todos, setTodos] = useState(props.todos);
+    const [title, setTitle] = useState(props.title);
+
+    useEffect(() => props.update({ id, title, todos }), [todos]);
+
     function createTodo(newTodo) {
-        props.update({
-            id,
-            title,
-            todos: [newTodo, ...todos],
-        });
+        setTodos([newTodo, ...todos]);
     }
 
-    function updateTodo(todo) {
-        let index = todos.findIndex((t) => t.id === todo.id);
+    function updateTodo(values) {
+        let i = todos.findIndex(todo => todo.id === this.id);
         let todosCopy = [...todos];
-        todosCopy[index] = todo;
-        props.update({
-            id,
-            title,
-            todos: [...todosCopy],
-        });
+        todosCopy[i] = { ...todosCopy[i], ...values };
+        setTodos(todosCopy);
     }
 
-    function destroyTodo(todoId) {
-        let index = todos.findIndex((t) => t.id === todoId);
+    function destroyTodo() {
+        let i = todos.findIndex(todo => todo.id === this.id);
         let todosCopy = [...todos];
-        todosCopy.splice(index, 1);
-        props.update({
-            id,
-            title,
-            todos: [...todosCopy],
-        });
+        todosCopy.splice(i, 1);
+        setTodos(todosCopy);
     }
 
     return (
@@ -39,11 +33,16 @@ export default function Project({ id, title, todos, ...props }) {
             <div className='header'>
                 <h2>{title}</h2>
                 <NewTodoButton click={createTodo} />
-                <RemoveButton click={() => props.destroy(id)} />
+                <RemoveButton click={props.destroy} />
             </div>
             <div className='content'>
-                {todos.map((todo, index) => (
-                    <Todo key={index} {...todo} update={updateTodo} destroy={destroyTodo} />
+                <CustomScroll />
+                {todos.map(todo => (
+                    <Todo {...todo}
+                        key={todo.id}
+                        update={updateTodo.bind(todo)}
+                        destroy={destroyTodo.bind(todo)}
+                    />
                 ))}
             </div>
         </div>

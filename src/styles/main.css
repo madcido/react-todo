@@ -78,14 +78,28 @@ i:active {
     box-shadow: 0 0 2px silver;
 }
 
+.project-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    z-index: 2;
+    box-shadow: 0px -1px 2px -1px rgba(255, 255, 255, 0.9) inset;
+}
+
 .project-card:last-child {
     margin-right: 0;
 }
 
 .content {
+    position: relative;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 .header {
@@ -94,7 +108,7 @@ i:active {
     align-items: center;
     background-color: rgba(60, 60, 60, 0.1);
     color: rgba(60, 60, 60, 1);
-    box-shadow: 0 1px 1px -1px rgba(60, 60, 60, 0.5);;
+    box-shadow: 0 2px 2px -1px rgba(60, 60, 60, 0.2);;
     z-index: 2;
 }
 
@@ -113,6 +127,7 @@ i:active {
     word-wrap: break-word;
     cursor: pointer;
     display: flex;
+    align-items: center;
     flex: 1;
 }
 
@@ -133,7 +148,7 @@ i:active {
 }
 
 .todo-block .header {
-    background-color: white;
+    background-color: transparent;
     box-shadow: none;
 }
 
@@ -146,7 +161,7 @@ i:active {
     cursor: pointer;
 }
 
-.todo-block textarea {
+.todo-block .description {
     box-sizing: border-box;
     padding: 5px;
     width: 100%;
@@ -156,6 +171,7 @@ i:active {
     border: 1px solid rgba(60, 60, 60, 0.5);
     border-radius: 2px;
     box-shadow: 0 0 1px silver inset;
+    font: 14px Ubuntu, Arial;
 }
 
 .priority-bullet {
@@ -163,6 +179,10 @@ i:active {
     width: 18px;
     height: 18px;
     border-radius: 50%;
+}
+
+.todo-title {
+    flex: 1;
 }
 
 .prev-btn, .next-btn {

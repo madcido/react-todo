@@ -6,12 +6,12 @@ export default function NewTodoButton(props) {
     function newTodoForm() {
         Swal.fire({
             html:
-            `<input id="new-todo-title" class="swal2-input" placeholder="Title">
-            <input id="new-todo-description" class="swal2-input" placeholder="Description">
-            <select id="new-todo-priority" class="swal2-input"">
-            <option value="0" selected>Low Priority</option>
-            <option value="1">Medium Priority</option>
-            <option value="2">High Priority</option>
+            `<input id='new-todo-title' class='swal2-input' placeholder='Title'>
+            <input id='new-todo-description' class='swal2-input' placeholder='Description'>
+            <select id='new-todo-priority' class='swal2-input'>
+            <option value='0' selected>Low Priority</option>
+            <option value='1'>Medium Priority</option>
+            <option value='2'>High Priority</option>
             </select>
             `,
             focusConfirm: false,

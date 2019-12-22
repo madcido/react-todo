@@ -6,7 +6,7 @@ export default function NewProjectButton(props) {
     function newProjectForm() {
         Swal.fire({
             html:
-            '<input id="new-project-title" class="swal2-input" placeholder="Title">'
+            `<input id='new-project-title' class='swal2-input' placeholder='Title'>`
             ,
             focusConfirm: false,
             confirmButtonText: 'Add Project',
