@@ -20,7 +20,7 @@ export default function Todo({ id, ...props }) {
             <>
                 <div className='header'>
                     <input
-                        className='titleInput'
+                        className='title'
                         name='title'
                         value={title}
                         onChange={e => setTitle(e.target.value)}
@@ -46,7 +46,7 @@ export default function Todo({ id, ...props }) {
                 <div className='header'>
                     <p onClick={() => setOpen(!open)}>
                         <PriorityBullet priority={priority} />
-                        <span className='todo-title'>{title}</span>
+                        <span className='title'>{title}</span>
                     </p>
                     <DoneCheckbox id={id} checked={done} toggle={setDone} />
                 </div>
