@@ -172,6 +172,7 @@ i:active {
     border-radius: 2px;
     box-shadow: 0 0 1px silver inset;
     font: 14px Ubuntu, Arial;
+    overflow-y: auto;
 }
 
 .priority-bullet {
