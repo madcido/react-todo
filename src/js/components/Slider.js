@@ -1,7 +1,7 @@
 import React from 'react';
 import Project from './Project';
 
-export default function ProjectSlider({ projects, actions }) {
+export default function Slider({ data, actions }) {
     return (
         <React.Fragment>
             <PrevButton />
@@ -13,7 +13,7 @@ export default function ProjectSlider({ projects, actions }) {
                 onMouseUp={() => unholdSlider()}
                 onMouseMove={e => dragSlider(e)}
             >
-                {projects.map(project => (
+                {data.map(project => (
                     <Project {...project}
                         key={project.id}
                         update={actions.update}

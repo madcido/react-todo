@@ -26,7 +26,7 @@ export default function Todo({ id, ...props }) {
                         options={[0, 1, 2]}
                     />
                     <input
-                        className='title'
+                        className='todo-title'
                         name='title'
                         value={title}
                         placeholder='Title'
@@ -35,7 +35,7 @@ export default function Todo({ id, ...props }) {
                 </div>
                 <div id={'todo-content-' + id}>
                     <textarea
-                        className='description'
+                        className='todo-description'
                         name='description'
                         value={description}
                         placeholder='Description'
@@ -43,7 +43,7 @@ export default function Todo({ id, ...props }) {
                     ></textarea>
                     <RemoveButton click={() => props.destroy()} />
                     <EditButton
-                        icon='fas fa-check-double'
+                        icon='fas fa-check'
                         color='darkgreen'
                         click={() => setEdit(false)}
                     />
@@ -54,13 +54,13 @@ export default function Todo({ id, ...props }) {
                 <div className='header'>
                     <p onClick={() => setOpen(!open)}>
                         <PriorityBullet value={priority} />
-                        <span className='title'>{title}</span>
+                        <span className='todo-title'>{title}</span>
                     </p>
                     <CustomCheckbox id={id} checked={done} toggle={setDone} />
                 </div>
                 {open &&
                 <div id={'todo-content-' + id}>
-                    <p className='description'>{description}</p>
+                    <p className='todo-description'>{description}</p>
                     <RemoveButton click={() => props.destroy(id)} />
                     <EditButton
                         icon='fas fa-edit'

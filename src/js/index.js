@@ -1,36 +1,32 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import NewProjectButton from './components/NewProjectButton';
-import ProjectSlider from './components/ProjectSlider';
+import Slider from './components/Slider';
 import { retrieveProjects, saveProject, deleteProject } from './LocalStorage';
 import '../styles/main.css';
 
 function App() {
-    const [projects, setProjects] = useState(retrieveProjects());
+    const [projectList, setProjectList] = useState(retrieveProjects());
 
     function createProject(newProject) {
         saveProject(newProject);
-        setProjects([newProject, ...projects]);
-    }
-
-    function updateProject(project) {
-        saveProject(project);
+        setProjectList([newProject, ...projectList]);
     }
 
     function destroyProject(id) {
         deleteProject(id);
-        let i = projects.findIndex(p => p.id === id);
-        let projectsCopy = [...projects];
-        projectsCopy.splice(i, 1);
-        setProjects(projectsCopy);
+        let i = projectList.findIndex(p => p.id === id);
+        let projectListCopy = [...projectList];
+        projectListCopy.splice(i, 1);
+        setProjectList(projectListCopy);
     }
 
     return (
         <React.Fragment>
             <NewProjectButton click={createProject} />
-            <ProjectSlider
-                projects={projects}
-                actions={{ update: updateProject, destroy: destroyProject }}
+            <Slider
+                data={projectList}
+                actions={{ update: saveProject, destroy: destroyProject }}
             />
         </React.Fragment>
     )

@@ -29,17 +29,18 @@ i:active {
     margin: 30px auto;
     height: 40px;
     width: 160px;
-    background-color: white;
+    background-color: #fff;
     color: #3c3c3c;
     font-size: 16px;
     font-weight: bold;
     border: 1px solid #9d9d9d;
     border-radius: 3px;
     box-shadow: 0 0 2px silver;
+    cursor: pointer;
 }
 
 .new-project-btn:hover {
-    background-image: linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1));
+    background-color: #f0f0f0;
 }
 
 .projects {
@@ -93,6 +94,26 @@ i:active {
     margin-right: 0;
 }
 
+.project-card .project-title {
+    margin: 0;
+    padding: 0;
+    padding-left: 25px;
+    height: 50px;
+    line-height: 50px;
+    word-wrap: break-word;
+    font-size: 20px;
+    flex: 1;
+}
+
+.project-card input.project-title {
+    box-sizing: border-box;
+    background-color: transparent;
+    border: none;
+    min-width: 0;
+    font: 600 20px ubuntu, arial;
+    color: #3c3c3c;
+}
+
 .content {
     position: relative;
     display: flex;
@@ -104,20 +125,11 @@ i:active {
 
 .header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     background-color: #f0f0f0;
     color: #3c3c3c;
-    box-shadow: 0 2px 2px -1px rgba(60, 60, 60, 0.2);;
+    box-shadow: 0 1px 2px -1px rgba(60, 60, 60, 0.2);;
     z-index: 2;
-}
-
-.header h2 {
-    margin: 15px;
-    margin-left: 25px;
-    width: 60%;
-    word-wrap: break-word;
-    font-size: 20px;
 }
 
 .header p {
@@ -161,7 +173,7 @@ i:active {
     cursor: pointer;
 }
 
-.todo-block .title {
+.todo-block .todo-title {
     flex: 1;
     border: none;
     font: 14px Ubuntu, Arial;
@@ -169,7 +181,7 @@ i:active {
     margin-left: 10px;
 }
 
-.todo-block input.title {
+.todo-block input.todo-title {
     border: 1px solid #9d9d9d;
     border-radius: 2px;
     box-sizing: border-box;
@@ -177,7 +189,7 @@ i:active {
     padding: 5px;
 }
 
-.todo-block .description {
+.todo-block .todo-description {
     box-sizing: border-box;
     padding: 5px;
     width: 100%;
@@ -187,16 +199,16 @@ i:active {
     border: 1px solid #e0e0e0;
     border-left: none;
     border-right: none;
-    box-shadow: 0 0 1px silver inset;
     font: 14px Ubuntu, Arial;
     color: #3c3c3c;
     overflow-y: auto;
 }
 
-.todo-block textarea.description {
+.todo-block textarea.todo-description {
     resize: none;
     border: 1px solid #9d9d9d;
     border-radius: 2px;
+    height: 100px;
 }
 
 .priority-bullet {
