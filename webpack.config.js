@@ -8,10 +8,16 @@ module.exports = {
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                use: [
-                    { loader: 'babel-loader' }
-                ]
-            }
+                use: ['babel-loader'],
+            },
+            {
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader'],
+            },
+            {
+                test: /\.(png|jpe?g|gif)$/i,
+                use: ['file-loader?name=[name].[ext]'],
+            },
         ]
     },
     resolve: {
@@ -20,6 +26,6 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
-        publicPath: path.resolve(__dirname, 'dist'),
+        publicPath: 'dist/',
     },
 };

@@ -1,8 +1,9 @@
 import React from 'react';
+import './index.css';
 
-export default function DoneCheckbox(props) {
+export default function CustomCheckbox(props) {
     return (
-        <div>
+        <div className='custom-checkbox'>
             <input
                 id={'check-' + props.id}
                 type='checkbox'

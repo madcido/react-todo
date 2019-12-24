@@ -20,7 +20,7 @@ export default function NewTodoButton(props) {
                 props.click({
                     id: getUniqueId('todo'),
                     title: document.getElementById('new-todo-title').value,
-                    description: document.getElementById('new-todo-description').value,
+                    description: document.getElementById('new-todo-description').value || "Add some notes...",
                     priority: document.getElementById('new-todo-priority').value,
                     done: false,
                 });

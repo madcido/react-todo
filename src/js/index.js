@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import NewProjectButton from './components/NewProjectButton';
 import ProjectSlider from './components/ProjectSlider';
 import { retrieveProjects, saveProject, deleteProject } from './LocalStorage';
+import '../styles/main.css';
 
 function App() {
     const [projects, setProjects] = useState(retrieveProjects());

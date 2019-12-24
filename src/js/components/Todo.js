@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PriorityBullet from './PriorityBullet';
-import DoneCheckbox from './DoneCheckbox';
+import CustomCheckbox from './CustomCheckbox';
+import SelectField from './SelectField';
 import EditButton from './EditButton';
 import RemoveButton from './RemoveButton';
 
@@ -19,10 +20,16 @@ export default function Todo({ id, ...props }) {
         {edit ?
             <>
                 <div className='header'>
+                    <SelectField
+                        value={priority}
+                        handleChange={setPriority}
+                        options={[0, 1, 2]}
+                    />
                     <input
                         className='title'
                         name='title'
                         value={title}
+                        placeholder='Title'
                         onChange={e => setTitle(e.target.value)}
                     />
                 </div>
@@ -31,6 +38,7 @@ export default function Todo({ id, ...props }) {
                         className='description'
                         name='description'
                         value={description}
+                        placeholder='Description'
                         onChange={e => setDescription(e.target.value)}
                     ></textarea>
                     <RemoveButton click={() => props.destroy()} />
@@ -45,10 +53,10 @@ export default function Todo({ id, ...props }) {
             <>
                 <div className='header'>
                     <p onClick={() => setOpen(!open)}>
-                        <PriorityBullet priority={priority} />
+                        <PriorityBullet value={priority} />
                         <span className='title'>{title}</span>
                     </p>
-                    <DoneCheckbox id={id} checked={done} toggle={setDone} />
+                    <CustomCheckbox id={id} checked={done} toggle={setDone} />
                 </div>
                 {open &&
                 <div id={'todo-content-' + id}>
