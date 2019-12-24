@@ -202,6 +202,7 @@ i:active {
     font: 14px Ubuntu, Arial;
     color: #3c3c3c;
     overflow-y: auto;
+    white-space: pre-wrap;
 }
 
 .todo-block textarea.todo-description {
