@@ -140,9 +140,8 @@ i:active {
 
 .header p {
     position:relative;
-    margin: 5px 0;
-    width: 80%;
-    word-wrap: break-word;
+    margin: 2px 0;
+    padding: 5px 0;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -185,6 +184,7 @@ i:active {
     font: 14px Ubuntu, Arial;
     color: #3c3c3c;
     margin-left: 10px;
+    word-break: break-word;
 }
 
 .todo-block input.todo-title {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Todo from './Todo';
 import CustomScroll from './CustomScroll';
 import EditableText from './EditableText';
