@@ -53,14 +53,14 @@ i:active {
     scrollbar-width: none;
 }
 
+.projects::-webkit-scrollbar {
+    display: none;
+}
+
 .projects::after {
   content: "";
   flex: 0 0 20px;
   height: 20px;
-}
-
-.projects::-webkit-scrollbar {
-    display: none;
 }
 
 .project-card {
@@ -120,13 +120,17 @@ i:active {
     resize: none;
 }
 
-.content {
+.project-card .content {
     position: relative;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
+}
+
+.project-card .content::-webkit-scrollbar {
+    display: none;
 }
 
 .header {
