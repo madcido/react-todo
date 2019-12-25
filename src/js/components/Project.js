@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Todo from './Todo';
 import CustomScroll from './CustomScroll';
+import EditableText from './EditableText';
 import NewTodoButton from './NewTodoButton';
 import RemoveButton from './RemoveButton';
 
 export default function Project({ id, ...props }) {
     const [todos, setTodos] = useState(props.todos);
     const [title, setTitle] = useState(props.title);
-    const [editTitle, setEditTitle] = useState(false);
 
     useEffect(() => props.update({ id, title, todos }), [title, todos]);
 
@@ -32,17 +32,11 @@ export default function Project({ id, ...props }) {
     return (
         <div className='project-card' id={'project-' + id}>
             <div className='header'>
-            {editTitle ?
-                <input
+                <EditableText
                     className='project-title'
                     value={title}
-                    onChange={e => setTitle(e.target.value)}
-                    onBlur={() => setEditTitle(false)}
-                    autoFocus
+                    onChange={setTitle}
                 />
-                :
-                <h2 className='project-title' onClick={() => setEditTitle(true)}>{title}</h2>
-            }
                 <NewTodoButton click={createTodo} />
                 <RemoveButton click={props.destroy} />
             </div>
