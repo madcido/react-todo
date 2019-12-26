@@ -47,6 +47,7 @@ i:active {
     position: relative;
     display: flex;
     align-items: flex-start;
+    justify-content: center;
     overflow-x: scroll;
     width: 100%;
     -ms-overflow-style: none;
@@ -55,12 +56,6 @@ i:active {
 
 .projects::-webkit-scrollbar {
     display: none;
-}
-
-.projects::after {
-  content: "";
-  flex: 0 0 20px;
-  height: 20px;
 }
 
 .project-card {
@@ -88,10 +83,6 @@ i:active {
     height: 2px;
     z-index: 2;
     box-shadow: 0px -1px 2px -1px rgba(255, 255, 255, 0.9) inset;
-}
-
-.project-card:last-child {
-    margin-right: 0;
 }
 
 .project-card .project-title {
