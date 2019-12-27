@@ -1,34 +1,20 @@
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
 import ReactDOM from 'react-dom';
+import { Dispatch, reducer } from './reducer';
 import NewProjectButton from './components/NewProjectButton';
 import Slider from './components/Slider';
-import { retrieveProjects, saveProject, deleteProject } from './LocalStorage';
+import { retrieveProjects } from './LocalStorage';
 import '../styles/main.css';
 
+
 function App() {
-    const [projectList, setProjectList] = useState(retrieveProjects());
-
-    function createProject(newProject) {
-        saveProject(newProject);
-        setProjectList([newProject, ...projectList]);
-    }
-
-    function destroyProject(id) {
-        deleteProject(id);
-        let i = projectList.findIndex(p => p.id === id);
-        let projectListCopy = [...projectList];
-        projectListCopy.splice(i, 1);
-        setProjectList(projectListCopy);
-    }
+    const [state, dispatch] = useReducer(reducer, { projects: retrieveProjects() });
 
     return (
-        <React.Fragment>
-            <NewProjectButton click={createProject} />
-            <Slider
-                data={projectList}
-                actions={{ update: saveProject, destroy: destroyProject }}
-            />
-        </React.Fragment>
+        <Dispatch.Provider value={dispatch}>
+            <NewProjectButton />
+            <Slider data={state.projects} />
+        </Dispatch.Provider>
     )
 }
 

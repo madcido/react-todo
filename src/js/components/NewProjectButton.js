@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Swal from 'sweetalert2';
 import { getUniqueId } from '../LocalStorage';
+import Dispatch from '../reducer';
 
-export default function NewProjectButton(props) {
+export default function NewProjectButton() {
+    const dispatch = useContext(Dispatch);
+
     function newProjectForm() {
         Swal.fire({
             html:
@@ -11,10 +14,13 @@ export default function NewProjectButton(props) {
             focusConfirm: false,
             confirmButtonText: 'Add Project',
             preConfirm: () => {
-                props.click({
-                    id: getUniqueId('project'),
-                    title: document.getElementById('new-project-title').value,
-                    todos: [],
+                dispatch({
+                    type: 'ADD_PROJECT',
+                    payload: {
+                        id: getUniqueId('project'),
+                        title: document.getElementById('new-project-title').value,
+                        todos: [],
+                    },
                 });
             },
         });

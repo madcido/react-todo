@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PriorityBullet from './PriorityBullet';
 import CustomCheckbox from './CustomCheckbox';
 import SelectField from './SelectField';
@@ -11,9 +11,18 @@ export default function Todo({ id, ...props }) {
     const [title, setTitle] = useState(props.title);
     const [description, setDescription] = useState(props.description);
     const [priority, setPriority] = useState(props.priority);
-    const [done, setDone] = useState(props.done);
 
-    useEffect(() => props.update({ title, description, priority, done }), [edit, done]);
+    function saveEdit() {
+        props.update({ title, description, priority });
+        setEdit(false);
+    }
+
+    function cancelEdit() {
+        setTitle(props.title);
+        setDescription(props.description);
+        setPriority(props.priority);
+        setEdit(false);
+    }
 
     return (
         <div className='todo-block' id={'todo-' + id}>
@@ -41,11 +50,15 @@ export default function Todo({ id, ...props }) {
                         placeholder='Description'
                         onChange={e => setDescription(e.target.value)}
                     ></textarea>
-                    <RemoveButton click={() => props.destroy()} />
+                    <EditButton
+                        icon='fas fa-times'
+                        color='darkred'
+                        click={cancelEdit}
+                    />
                     <EditButton
                         icon='fas fa-check'
                         color='darkgreen'
-                        click={() => setEdit(false)}
+                        click={saveEdit}
                     />
                 </div>
             </>
@@ -56,12 +69,12 @@ export default function Todo({ id, ...props }) {
                         <PriorityBullet value={priority} />
                         <span className='todo-title'>{title}</span>
                     </p>
-                    <CustomCheckbox id={id} checked={done} toggle={setDone} />
+                    <CustomCheckbox id={id} checked={props.done} toggle={done => props.update({ done })} />
                 </div>
                 {open &&
                 <div id={'todo-content-' + id}>
                     <p className='todo-description'>{description}</p>
-                    <RemoveButton click={() => props.destroy(id)} />
+                    <RemoveButton click={props.delete} />
                     <EditButton
                         icon='fas fa-edit'
                         color='#3c3c3c'

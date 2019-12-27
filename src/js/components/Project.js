@@ -1,32 +1,51 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import Todo from './Todo';
 import CustomScroll from './CustomScroll';
 import EditableText from './EditableText';
 import NewTodoButton from './NewTodoButton';
 import RemoveButton from './RemoveButton';
+import Dispatch from '../reducer';
 
-export default function Project({ id, ...props }) {
-    const [todos, setTodos] = useState(props.todos);
-    const [title, setTitle] = useState(props.title);
+export default function Project({ id, title, todos }) {
+    const dispatch = useContext(Dispatch);
 
-    useEffect(() => props.update({ id, title, todos }), [title, todos]);
+    function updateProject(value) {
+        dispatch({
+            id,
+            type: 'UPDATE_PROJECT',
+            payload: value,
+        });
+    }
+
+    function deleteProject() {
+        dispatch({
+            id,
+            type: 'DELETE_PROJECT',
+        });
+    }
 
     function createTodo(newTodo) {
-        setTodos([newTodo, ...todos]);
+        updateProject({
+            todos: [newTodo, ...todos],
+        });
     }
 
     function updateTodo(values) {
         let i = todos.findIndex(todo => todo.id === this.id);
         let todosCopy = [...todos];
         todosCopy[i] = { ...todosCopy[i], ...values };
-        setTodos(todosCopy);
+        updateProject({
+            todos: todosCopy,
+        });
     }
 
-    function destroyTodo() {
+    function deleteTodo() {
         let i = todos.findIndex(todo => todo.id === this.id);
         let todosCopy = [...todos];
         todosCopy.splice(i, 1);
-        setTodos(todosCopy);
+        updateProject({
+            todos: todosCopy,
+        });
     }
 
     return (
@@ -35,10 +54,10 @@ export default function Project({ id, ...props }) {
                 <EditableText
                     className='project-title'
                     value={title}
-                    onChange={setTitle}
+                    onChange={title => updateProject({ title })}
                 />
                 <NewTodoButton click={createTodo} />
-                <RemoveButton click={props.destroy} />
+                <RemoveButton click={deleteProject} />
             </div>
             <div className='content'>
                 <CustomScroll />
@@ -46,7 +65,7 @@ export default function Project({ id, ...props }) {
                     <Todo {...todo}
                         key={todo.id}
                         update={updateTodo.bind(todo)}
-                        destroy={destroyTodo.bind(todo)}
+                        delete={deleteTodo.bind(todo)}
                     />
                 ))}
             </div>

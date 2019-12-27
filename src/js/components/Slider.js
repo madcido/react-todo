@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Project from './Project';
 
-export default function Slider({ data, actions }) {
+export default function Slider({ data }) {
     const [index, setIndex] = useState(0);
     const [display, setDisplay] = useState(1);
 
@@ -47,18 +47,14 @@ export default function Slider({ data, actions }) {
             <i className='fas fa-arrow-right slider-next-btn' onClick={() => slide(1)}></i>
             <div className='slider-bullets'>
             {data.map((project, i) => (
-                <div key={project.id} className={index === i && 'selected'} onClick={() => setIndex(i)}>
+                <div key={project.id} className={index === i ? 'selected' : null} onClick={() => setIndex(i)}>
                     <span>{project.title}</span>
                 </div>
             ))}
             </div>
             <div className='slider-display'>
             {dataToDisplay.map(project => (
-                <Project {...project}
-                    key={project.id}
-                    update={actions.update}
-                    destroy={() => actions.destroy(project.id)}
-                />
+                <Project key={project.id} {...project} />
             ))}
             </div>
         </React.Fragment>
