@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import Todo from './Todo';
 import CustomScroll from './CustomScroll';
-import EditableText from './EditableText';
+import ProjectTitle from './ProjectTitle';
 import NewTodoButton from './NewTodoButton';
 import RemoveButton from './RemoveButton';
 import Dispatch from '../reducer';
 
-export default function Project({ id, title, todos }) {
+export default function Project({ id, title, todos, newProject }) {
     const dispatch = useContext(Dispatch);
 
     function updateProject(value) {
@@ -51,10 +51,12 @@ export default function Project({ id, title, todos }) {
     return (
         <div className='project-card' id={'project-' + id}>
             <div className='header'>
-                <EditableText
+                <ProjectTitle
                     className='project-title'
                     value={title}
-                    onChange={title => updateProject({ title })}
+                    autoFocus={newProject}
+                    onChange={e => updateProject({ title: e.target.value })}
+                    onBlur={() => updateProject({ newProject: false })}
                 />
                 <NewTodoButton click={createTodo} />
                 <RemoveButton click={deleteProject} />

@@ -25,24 +25,6 @@ i:active {
     flex-direction: column;
 }
 
-.new-project-btn {
-    margin: 30px auto;
-    height: 40px;
-    width: 160px;
-    background-color: #fff;
-    color: #3c3c3c;
-    font-size: 16px;
-    font-weight: bold;
-    border: 1px solid #9d9d9d;
-    border-radius: 3px;
-    box-shadow: 0 0 2px silver;
-    cursor: pointer;
-}
-
-.new-project-btn:hover {
-    background-color: #f0f0f0;
-}
-
 .project-card {
     position: relative;
     flex-grow: 0;
@@ -101,12 +83,6 @@ i:active {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-.project-card .content::-webkit-scrollbar {
-    display: none;
 }
 
 .header {
