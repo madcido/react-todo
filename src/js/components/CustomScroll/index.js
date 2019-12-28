@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
+import './index.css';
 
 export default function CustomScroll(props) {
-    const [, forceUpdate] = useState();
+    const [ignore, forceUpdate] = useState();
     const [display, setDisplay] = useState('none');
     const scrollBullet = useRef();
     const styles = {
@@ -11,18 +12,21 @@ export default function CustomScroll(props) {
         width: props.width,
         backgroundColor: props.color,
         borderRadius: props.radius,
-        position: 'absolute',
-        opacity: '0',
-        transition: 'opacity 0.5s',
     };
+    let box = undefined;
+    let bullet = undefined;
+    let bulletSize = undefined;
 
     useEffect(() => {
-        const bullet = scrollBullet.current;
-        const box = scrollBullet.current.parentNode;
-        const initialScrollHeight = box.scrollHeight;
-        const bulletSize = box.offsetHeight * box.offsetHeight/box.scrollHeight;
+        box = scrollBullet.current.parentNode;
+        bullet = scrollBullet.current;
+        bulletSize = box.offsetHeight * box.offsetHeight/box.scrollHeight;
         bullet.style.height = `${bulletSize}px`;
+        box.classList.add('custom-scroll-box');
+    });
 
+    useEffect(() => {
+        const initialScrollHeight = box.scrollHeight;
         let watch = setInterval(() => {
             if (box.scrollHeight !== initialScrollHeight) {
                 forceUpdate({});
@@ -34,6 +38,10 @@ export default function CustomScroll(props) {
             }
         }, 100);
 
+        return () => clearInterval(watch);
+    });
+
+    useEffect(() => {
         const verticalGap = parseInt(props.verticalGap);
         const bulletRange = box.scrollHeight - bulletSize - 2 * verticalGap;
         const scrollRange = box.scrollHeight - box.offsetHeight;
@@ -42,27 +50,30 @@ export default function CustomScroll(props) {
             bullet.style.top = `${verticalGap + bulletPosition}px`;
         };
 
-        let scrollStop = null;
-        const isScrolling = () => {
-            bullet.style.opacity = 1;
-            if (scrollStop) {
-                clearTimeout(scrollStop);
-            }
-            scrollStop = setTimeout(() => bullet.style.opacity = 0, 200);
-        };
-
         box.addEventListener('scroll', moveBullet);
-        box.addEventListener('scroll', isScrolling);
+        return () => box.removeEventListener('scroll', moveBullet);
+    });
 
-        return () => {
-            box.removeEventListener('scroll', moveBullet);
-            box.removeEventListener('scroll', isScrolling);
-            clearInterval(watch);
-        };
+    useEffect(() => {
+        if (props.fading) {
+            let scrollStop = null;
+            const isScrolling = () => {
+                bullet.style.opacity = 1;
+                if (scrollStop) {
+                    clearTimeout(scrollStop);
+                }
+                scrollStop = setTimeout(() => bullet.style.opacity = 0, 200);
+            };
+
+            box.addEventListener('scroll', isScrolling);
+            return () => box.removeEventListener('scroll', isScrolling);
+        } else {
+            bullet.style.opacity = 1;
+        }
     });
 
     return (
-        <div ref={scrollBullet} style={styles}></div>
+        <div ref={scrollBullet} className='custom-scroll' style={styles}></div>
     );
 }
 

@@ -1,0 +1,14 @@
+.custom-scroll {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.custom-scroll-box {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.custom-scroll-box::-webkit-scrollbar {
+    display: none;
+}
