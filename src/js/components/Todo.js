@@ -13,11 +13,14 @@ export default function Todo({ id, ...props }) {
     const [priority, setPriority] = useState(props.priority);
 
     function saveEdit() {
-        props.update({ title, description, priority });
+        props.update({ title, description, priority, newTodo: false });
         setEdit(false);
     }
 
     function cancelEdit() {
+        if (props.newTodo) {
+            props.update({ newTodo: false });
+        }
         setTitle(props.title);
         setDescription(props.description);
         setPriority(props.priority);
@@ -26,7 +29,7 @@ export default function Todo({ id, ...props }) {
 
     return (
         <div className='todo-block' id={'todo-' + id}>
-        {edit ?
+        {(edit || props.newTodo) ?
             <>
                 <div className='header'>
                     <SelectField
@@ -40,6 +43,7 @@ export default function Todo({ id, ...props }) {
                         value={title}
                         placeholder='Title'
                         onChange={e => setTitle(e.target.value)}
+                        autoFocus='true'
                     />
                 </div>
                 <div id={'todo-content-' + id}>
@@ -47,7 +51,7 @@ export default function Todo({ id, ...props }) {
                         className='todo-description'
                         name='description'
                         value={description}
-                        placeholder='Description'
+                        placeholder='Add some notes...'
                         onChange={e => setDescription(e.target.value)}
                     ></textarea>
                     <EditButton
