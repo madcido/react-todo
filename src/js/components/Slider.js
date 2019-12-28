@@ -39,7 +39,7 @@ export default function Slider({ data }) {
 
     useEffect(() => {
         setIndex(0);
-    }, [data]);
+    }, [data.length]);
 
     return (
         <React.Fragment>
