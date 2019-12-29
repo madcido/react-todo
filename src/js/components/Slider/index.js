@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Project from './Project';
+import './index.css';
+import Project from '../Project';
 
 export default function Slider({ data }) {
     const [index, setIndex] = useState(0);

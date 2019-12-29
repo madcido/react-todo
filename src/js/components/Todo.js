@@ -55,16 +55,8 @@ export default function Todo({ id, ...props }) {
                         onChange={e => setDescription(e.target.value)}
                     ></textarea>
                     <div className='todo-actions'>
-                        <EditButton
-                        icon='fas fa-check'
-                        color='darkgreen'
-                        click={saveEdit}
-                        />
-                        <EditButton
-                            icon='fas fa-times'
-                            color='darkred'
-                            click={cancelEdit}
-                        />
+                        <EditButton type='save' click={saveEdit} />
+                        <EditButton type='cancel' click={cancelEdit} />
                     </div>
                 </div>
             </>
@@ -81,11 +73,7 @@ export default function Todo({ id, ...props }) {
                 <div id={'todo-content-' + id}>
                     <p className='todo-description'>{description}</p>
                     <div className='todo-actions'>
-                        <EditButton
-                            icon='fas fa-edit'
-                            color='#3c3c3c'
-                            click={() => setEdit(true)}
-                        />
+                        <EditButton click={() => setEdit(true)} />
                         <RemoveButton click={props.delete} />
                     </div>
                 </div>

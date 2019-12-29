@@ -1,4 +1,5 @@
 import React from 'react';
+import './index.css';
 
 const priorityColors = ['LightBlue', 'khaki', 'LightCoral'];
 
