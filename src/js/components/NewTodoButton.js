@@ -15,6 +15,8 @@ export default function NewTodoButton(props) {
     }
 
     return (
-        <i className='far fa-plus-square' onClick={newTodo}></i>
+        <button onClick={newTodo}>
+            <i className='far fa-plus-square'></i>
+        </button>
     );
 }

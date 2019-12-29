@@ -104,10 +104,17 @@ i:active {
     flex: 1;
 }
 
-.header i {
-    font-size: 20px;
+.header button {
+    border: none;
+    background-color: transparent;
+    padding: 0;
     margin-right: 20px;
     cursor: pointer;
+}
+
+.header i {
+    color: #3c3c3c;
+    font-size: 20px;
 }
 
 .todo-block {
@@ -125,13 +132,18 @@ i:active {
     box-shadow: none;
 }
 
-.todo-block i {
-    float: right;
-    color: darkred;
-    font-size: 20px;
+.todo-block button {
+    border: none;
+    background-color: transparent;
+    padding: 0;
     margin: 5px;
     margin-right: 7px;
     cursor: pointer;
+}
+
+.todo-block i {
+    color: darkred;
+    font-size: 20px;
 }
 
 .todo-block .todo-title {
@@ -172,6 +184,11 @@ i:active {
     border: 1px solid #9d9d9d;
     border-radius: 2px;
     height: 100px;
+}
+
+.todo-block .todo-actions {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .priority-bullet {

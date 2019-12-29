@@ -24,6 +24,8 @@ export default function RemoveButton(props) {
     }
 
     return (
-        <i className='fas fa-trash-alt' onClick={() => confirmRemoval()}></i>
+        <button onClick={() => confirmRemoval()}>
+            <i className='fas fa-trash-alt'></i>
+        </button>
     );
 }
