@@ -43,7 +43,7 @@ export default function Todo({ id, ...props }) {
                         value={title}
                         placeholder='Title'
                         onChange={e => setTitle(e.target.value)}
-                        autoFocus='true'
+                        autoFocus={props.newTodo}
                     />
                 </div>
                 <div id={'todo-content-' + id}>

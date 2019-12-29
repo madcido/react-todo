@@ -20,7 +20,6 @@ export default function ProjectTitle(props) {
         <textarea
             ref={textareaRef}
             spellCheck='false'
-            onFocus={props.autoFocus ? e => e.target.setSelectionRange(0, e.target.value.length) : null}
             {...props}
         ></textarea>
     );

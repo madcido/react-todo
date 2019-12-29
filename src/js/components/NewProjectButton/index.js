@@ -11,7 +11,7 @@ export default function NewProjectButton() {
             type: 'ADD_PROJECT',
             payload: {
                 id: getUniqueId('project'),
-                title: 'Mew PRoject',
+                title: '',
                 todos: [],
                 newProject: true,
             },
