@@ -48,18 +48,26 @@
   transform-origin: 0% 0%;
 }
 
+.custom-checkbox input[type=checkbox]:focus + label span:before,
 .custom-checkbox label:hover span:before {
   width: 5px;
   transition: width 100ms ease;
 }
 
+.custom-checkbox input[type=checkbox]:focus + label span:after,
 .custom-checkbox label:hover span:after {
   width: 10px;
   transition: width 150ms ease 100ms;
 }
 
 .custom-checkbox input[type=checkbox] {
-  display: none;
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+.custom-checkbox input[type=checkbox]:focus + label {
+  outline: 1px dotted;
 }
 
 .custom-checkbox input[type=checkbox]:checked + label span {

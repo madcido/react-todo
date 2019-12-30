@@ -56,7 +56,8 @@
     border-top: none;
 }
 
-.select-items div:hover {
+.select-items div:hover,
+.select-items div:focus {
     background-color: #f0f0f0;
 }
 

@@ -10,6 +10,15 @@ body {
     user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
 }
 
+input:focus, textarea:focus {
+    outline: 1px dotted;
+}
+
+i {
+    color: #3c3c3c;
+    font-size: 20px;
+}
+
 i:hover {
     transform: scale(1.1);
 }
@@ -52,6 +61,21 @@ i:active {
     box-shadow: 0px -1px 2px -1px rgba(255, 255, 255, 0.9) inset;
 }
 
+.project-card .header {
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    box-shadow: 0 1px 2px -1px rgba(60, 60, 60, 0.2);
+}
+
+.project-card .header button {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
 .project-card .project-title {
     margin: 0;
     padding: 10px 20px;
@@ -85,38 +109,6 @@ i:active {
     overflow-y: auto;
 }
 
-.header {
-    display: flex;
-    align-items: center;
-    background-color: #f0f0f0;
-    color: #3c3c3c;
-    box-shadow: 0 1px 2px -1px rgba(60, 60, 60, 0.2);;
-    z-index: 2;
-}
-
-.header p {
-    position:relative;
-    margin: 2px 0;
-    padding: 5px 0;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    flex: 1;
-}
-
-.header button {
-    border: none;
-    background-color: transparent;
-    padding: 0;
-    margin-right: 20px;
-    cursor: pointer;
-}
-
-.header i {
-    color: #3c3c3c;
-    font-size: 20px;
-}
-
 .todo-block {
     margin: 0 10px;
     padding: 5px;
@@ -127,23 +119,22 @@ i:active {
     border: none;
 }
 
-.todo-block .header {
-    background-color: transparent;
-    box-shadow: none;
+.todo-block .todo-header {
+    display: flex;
+    align-items: center;
 }
 
-.todo-block button {
+
+.todo-block .todo-header button {
     border: none;
     background-color: transparent;
-    padding: 0;
-    margin: 5px;
-    margin-right: 7px;
+    position: relative;
+    margin: 2px 0;
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+    flex: 1;
     cursor: pointer;
-}
-
-.todo-block i {
-    color: darkred;
-    font-size: 20px;
 }
 
 .todo-block .todo-title {
@@ -151,7 +142,9 @@ i:active {
     border: none;
     font: 14px Ubuntu, Arial;
     color: #3c3c3c;
+    margin: 0;
     margin-left: 10px;
+    text-align: left;
     word-break: break-word;
 }
 
@@ -189,4 +182,13 @@ i:active {
 .todo-block .todo-actions {
     display: flex;
     justify-content: flex-end;
+}
+
+.todo-block .todo-actions button {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    margin: 5px;
+    margin-right: 7px;
+    cursor: pointer;
 }

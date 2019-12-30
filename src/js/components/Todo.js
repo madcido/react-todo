@@ -31,7 +31,7 @@ export default function Todo({ id, ...props }) {
         <div className='todo-block' id={'todo-' + id}>
         {(edit || props.newTodo) ?
             <>
-                <div className='header'>
+                <div className='todo-header'>
                     <SelectField
                         value={priority}
                         handleChange={setPriority}
@@ -43,7 +43,8 @@ export default function Todo({ id, ...props }) {
                         value={title}
                         placeholder='Title'
                         onChange={e => setTitle(e.target.value)}
-                        autoFocus={props.newTodo}
+                        autoFocus={true}
+                        onFocus={e => e.target.select()}
                     />
                 </div>
                 <div id={'todo-content-' + id}>
@@ -62,11 +63,11 @@ export default function Todo({ id, ...props }) {
             </>
             :
             <>
-                <div className='header'>
-                    <p onClick={() => setOpen(!open)}>
+                <div className='todo-header'>
+                    <button onClick={() => setOpen(!open)}>
                         <PriorityBullet value={priority} />
-                        <span className='todo-title'>{title}</span>
-                    </p>
+                        <p className='todo-title'>{title}</p>
+                    </button>
                     <CustomCheckbox id={id} checked={props.done} toggle={done => props.update({ done })} />
                 </div>
                 {open &&
