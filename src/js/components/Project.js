@@ -63,7 +63,7 @@ export default function Project({ id, title, todos, newProject }) {
             </div>
             <div className='content'>
                 <CustomScroll />
-                {todos.map(todo => (
+                {todos.sort((a, b) => a.priority < b.priority).map(todo => (
                     <Todo {...todo}
                         key={todo.id}
                         update={updateTodo.bind(todo)}

@@ -8,7 +8,7 @@ export default function NewTodoButton(props) {
             id: getUniqueId('todo'),
             title: '',
             description: '',
-            priority: 0,
+            priority: 2,
             done: false,
             newTodo: true,
         });

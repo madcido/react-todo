@@ -42,6 +42,7 @@
     box-shadow: 0 0 2px #9d9d9d;
     border-radius: 2px;
     color: #3c3c3c;
+    white-space: nowrap;
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.2s;
